@@ -1,21 +1,19 @@
 import React from "react";
-import Form from "./Form";
-import Sorting from "./Sorting";
-import PageWrapper from "./PageWrapper";
-import Countries from "./Countries";
-import styles from "./Styling.module.css";
+
+import MainPage from './MainPage'
+import CountriesDetails from "./CountriesDetails";
+import { Route, Switch } from 'react-router-dom'
+
 const Content = () => {
   return (
     <>
-      <PageWrapper>
-        <div className={styles.formContainer}>
-          <Form />
-          <Sorting />
-        </div>
-        <div className={styles.countriesWrapper}>
-          <Countries className={styles.countries} />
-        </div>
-      </PageWrapper>
+
+      <Switch>
+        <Route exact path='/' component={MainPage} />
+        <Route path='/:id' component={CountriesDetails} />
+      </Switch>
+
+
     </>
   );
 };
