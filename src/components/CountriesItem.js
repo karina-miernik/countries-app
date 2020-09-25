@@ -4,7 +4,6 @@ import styles from "./Styling.module.css";
 import { Link } from "react-router-dom";
 
 const CountriesItem = ({ title, capital, img, id }) => {
-
   // const [countries, setCountries] = useState([])
   // useEffect(() => {
   //   fetch(`https://restcountries.eu/rest/v2/all`)
@@ -16,15 +15,8 @@ const CountriesItem = ({ title, capital, img, id }) => {
   // }, [])
 
   return (
-
-
-
-    <Card
-      style={{ width: "18rem" }}
-      className={styles.countryItem}
-    >
-      <Link to={`/${id}`} className={styles.link}>
-
+    <Card style={{ width: "18rem" }} className={styles.countryItem}>
+      <Link to={`/countries-app/${id}`} className={styles.link}>
         <Card.Img variant="top" src={img} />
       </Link>
       <Card.Body>
@@ -37,9 +29,6 @@ const CountriesItem = ({ title, capital, img, id }) => {
         </div>
       </Card.Body>
     </Card>
-
-
-
   );
 };
 

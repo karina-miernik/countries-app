@@ -9,7 +9,7 @@ const Content = () => {
     <>
       <Switch>
         <Route exact path="/countries-app" component={MainPage} />
-        <Route path="/:id" component={CountriesDetails} />
+        <Route path="/countries-app/:id" component={CountriesDetails} />
       </Switch>
     </>
   );
