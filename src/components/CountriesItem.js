@@ -23,7 +23,7 @@ const CountriesItem = ({ title, capital, img, id }) => {
         <Card.Title>{title}</Card.Title>
         <Card.Text>Capital: {capital}</Card.Text>
         <div className={styles.countryButtonWrapper}>
-          <Link to={`/${id}`} className={styles.link}>
+          <Link to={`/countries-app/${id}`} className={styles.link}>
             <button className={styles.countryButton}>More</button>
           </Link>
         </div>
