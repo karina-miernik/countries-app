@@ -10,7 +10,7 @@ const Countries = () => {
   const [text, setText] = useState('')
 
   useEffect(() => {
-    fetch("https://restcountries.eu/rest/v2/all")
+    fetch("https://restcountries.com/v2/all")
       .then((r) => r.json())
       .then((countries) => {
         const arrayCountries = countries

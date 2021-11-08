@@ -8,7 +8,7 @@ const CountriesDetails = () => {
   const { id } = useParams();
   const [country, setCountry] = useState([]);
   useEffect(() => {
-    fetch(`https://restcountries.eu/rest/v2/all/?id=${id}`)
+    fetch(`https://restcountries.com/v2/all/?id=${id}`)
       .then((r) => r.json())
       .then((country) => {
         const arrayCountries = country
