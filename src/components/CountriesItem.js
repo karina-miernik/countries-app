@@ -4,15 +4,6 @@ import styles from "./Styling.module.css";
 import { Link } from "react-router-dom";
 
 const CountriesItem = ({ title, capital, img, id }) => {
-  // const [countries, setCountries] = useState([])
-  // useEffect(() => {
-  //   fetch(`https://restcountries.eu/rest/v2/all`)
-  //     .then((r) => r.json())
-  //     .then((countries) => {
-  //       setCountries(countries)
-  //       console.log(countries);
-  //     });
-  // }, [])
 
   return (
     <Card style={{ width: "18rem" }} className={styles.countryItem}>
