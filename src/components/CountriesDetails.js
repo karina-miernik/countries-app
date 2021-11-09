@@ -23,7 +23,6 @@ const CountriesDetails = () => {
         console.log(arrayCountries);
       });
   }, [id]);
-
   return (
     <>
       <div className={styles.container}>
@@ -33,6 +32,7 @@ const CountriesDetails = () => {
             Go Back
           </button>
         </Link>
+       
 
         {country.map(
           (country) =>
@@ -40,7 +40,7 @@ const CountriesDetails = () => {
               <>
                 <div className={styles.countryWrapper}>
                   <div className={styles.countryImgWrapper}>
-                    <img src={country.flag} />
+                    <img src={country.flag} alt="country"/>
                   </div>
                   <div className={styles.countryRightWrapper}>
                     <div className={styles.countryTitle}>
@@ -77,7 +77,7 @@ const CountriesDetails = () => {
                         </p>
                         <p>
                           <b>Borders:</b>{" "}
-                          {country.borders.map((border) => {
+                          {country.borders ? country.borders.map((border) => {
                             return (
                               <>
                                 <button className={styles.borderButton}>
@@ -85,7 +85,10 @@ const CountriesDetails = () => {
                                 </button>
                               </>
                             );
-                          })}
+                            
+                          })
+                          : <span>None</span>
+                        }
                         </p>
                       </div>
                     </div>
