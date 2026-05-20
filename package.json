@@ -16,7 +16,6 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3"
   },
-  "homepage": "https://karina-miernik.github.io/countries-app",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",

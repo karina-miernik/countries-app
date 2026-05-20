@@ -7,7 +7,7 @@ import { Container } from "react-bootstrap";
 const CountriesItem = ({ title, capital, img, id }) => {
     return (
         <Card style={{ width: "18rem" }} className={styles.countryItem}>
-            <Link to={`/countries-app/${title}`} className={styles.link}>
+            <Link to={`/${title}`} className={styles.link}>
                 <Card.Img variant="top" src={img} />
             </Link>
             <Card.Body className={styles.cardWrapper}>
@@ -18,7 +18,7 @@ const CountriesItem = ({ title, capital, img, id }) => {
 
                 <div className={styles.countryButtonWrapper}>
                     <Link
-                        to={`/countries-app/${title}`}
+                        to={`/${title}`}
                         className={styles.link}
                     >
                         <button className={styles.countryButton}>More</button>

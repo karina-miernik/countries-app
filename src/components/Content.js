@@ -8,8 +8,8 @@ const Content = () => {
   return (
     <>
       <Switch>
-        <Route exact path="/countries-app" component={MainPage} />
-        <Route path="/countries-app/:id" component={CountriesDetails} />
+        <Route exact path="/" component={MainPage} />
+        <Route path="/:id" component={CountriesDetails} />
       </Switch>
     </>
   );

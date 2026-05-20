@@ -4,7 +4,7 @@ import styles from "./Styling.module.css";
 const Nav = () => {
   return (
     <nav className={styles.nav}>
-      <Link to={`/countries-app`} className={styles.link}>
+      <Link to={`/`} className={styles.link}>
         Find a country
       </Link>
     </nav>

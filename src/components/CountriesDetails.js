@@ -42,7 +42,7 @@ const CountriesDetails = () => {
     return (
         <>
             <div className={styles.container}>
-                <Link to="/countries-app">
+                <Link to="/">
                     {" "}
                     <button
                         className={styles.borderButton}
