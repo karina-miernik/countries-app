@@ -2,104 +2,100 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./Styling.module.css";
 import { Link } from "react-router-dom";
-// import styles from "./Styling.module.css";
+import Loader from "./Loader";
+import { Alert } from "react-bootstrap";
 
 const CountriesDetails = () => {
-  const { id } = useParams();
-  const [country, setCountry] = useState([]);
-  useEffect(() => {
-    fetch(`https://restcountries.com/v2/all/?id=${id}`)
-      .then((r) => r.json())
-      .then((country) => {
-        const arrayCountries = country
-          ? Object.keys(country).map((key) => {
-              return {
-                id: key,
-                ...country[key],
-              };
-            })
-          : [];
-        setCountry(arrayCountries);
-        console.log(arrayCountries);
-      });
-  }, [id]);
-  return (
-    <>
-      <div className={styles.container}>
-        <Link to="/countries-app">
-          {" "}
-          <button className={styles.borderButton} style={{ margin: "1rem" }}>
-            Go Back
-          </button>
-        </Link>
-       
+    const { id } = useParams();
+    const [country, setCountry] = useState(null);
+    const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
 
-        {country.map(
-          (country) =>
-            country.id.toString() === id && (
-              <>
-                <div className={styles.countryWrapper}>
-                  <div className={styles.countryImgWrapper}>
-                    <img src={country.flag} alt="country"/>
-                  </div>
-                  <div className={styles.countryRightWrapper}>
-                    <div className={styles.countryTitle}>
-                      <h2>{country.name}</h2>
+    useEffect(() => {
+        fetch(`https://restcountries.com/v3.1/name/${id}?fullText=true`)
+            .then((r) => {
+                if (!r.ok) {
+                    throw new Error(`HTTP error: ${r.status}`);
+                }
+                return r.json();
+            })
+            .then((country) => {
+                setCountry(country[0]);
+                setIsLoading(false);
+            })
+            .catch((err) => {
+                setError(err.message);
+                setIsLoading(false);
+            });
+    }, [id]);
+    if (isLoading) return <Loader />;
+    if (error) {
+        return (
+            <Alert key={"danger"} variant={"danger"} className="mt-5">
+                {` Oops, something went wrong! ${error}`}
+            </Alert>
+        );
+    }
+    if (!country) return null;
+
+    return (
+        <>
+            <div className={styles.container}>
+                <Link to="/countries-app">
+                    {" "}
+                    <button
+                        className={styles.borderButton}
+                        style={{ margin: "1rem" }}
+                    >
+                        Go Back
+                    </button>
+                </Link>
+                <>
+                    <div className={styles.countryWrapper}>
+                        <div className={styles.countryImgWrapper}>
+                            <img src={country.flags?.png} alt="country" />
+                        </div>
+                        <div className={styles.countryRightWrapper}>
+                            <div className={styles.countryTitle}>
+                                <h2>{country.name?.official}</h2>
+                            </div>
+                            <div className={styles.countryTxtWrapper}>
+                                <div className={styles.countryFirstCol}>
+                                    <p>
+                                        <b>Capital:</b>{" "}
+                                        {country.capital
+                                            .map((c) => c)
+                                            .join(", ")}
+                                    </p>
+                                    <p>
+                                        <b>Region:</b> {country.region}
+                                    </p>
+                                </div>
+                                <div className={styles.countrySecCol}>
+                                    <p>
+                                        <b>Currency:</b>{" "}
+                                        <span style={{ padding: "0.5rem" }}>
+                                            {Object.values(country.currencies)
+                                                .map((curr) => curr.name)
+                                                .join(", ")}
+                                        </span>
+                                    </p>
+                                    <p>
+                                        <b>Languages:</b>{" "}
+                                        <span style={{ padding: "0.5rem" }}>
+                                            {Object.values(
+                                                country.languages
+                                            ).join(", ")}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className={styles.countryTxtWrapper}>
-                      <div className={styles.countryFirstCol}>
-                        <p>
-                          <b>Native Name:</b> {country.nativeName}
-                        </p>
-                        <p>
-                          <b>Capital:</b> {country.capital}
-                        </p>
-                        <p>
-                          <b>Region:</b> {country.region}
-                        </p>
-                      </div>
-                      <div className={styles.countrySecCol}>
-                        <p>
-                          <b>Currency:</b>{" "}
-                          {country.currencies.map((courency) => (
-                            <span style={{ padding: "0.5rem" }}>
-                              {courency.name}
-                            </span>
-                          ))}
-                        </p>
-                        <p>
-                          <b>Languages:</b>{" "}
-                          {country.languages.map((language) => (
-                            <span style={{ padding: "0.5rem" }}>
-                              {language.name}
-                            </span>
-                          ))}
-                        </p>
-                        <p>
-                          <b>Borders:</b>{" "}
-                          {country.borders ? country.borders.map((border) => {
-                            return (
-                              <>
-                                <button className={styles.borderButton}>
-                                  {border}
-                                </button>
-                              </>
-                            );
-                            
-                          })
-                          : <span>None</span>
-                        }
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </>
-            )
-        )}
-      </div>
-    </>
-  );
+                </>
+            </div>
+        </>
+    );
 };
 
 export default CountriesDetails;

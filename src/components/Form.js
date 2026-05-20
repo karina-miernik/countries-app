@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import InputGroup from "react-bootstrap/InputGroup";
+import React from "react";
 import FormControl from "react-bootstrap/FormControl";
 import styles from "./Styling.module.css";
 
