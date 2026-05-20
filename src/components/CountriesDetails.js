@@ -28,7 +28,8 @@ const CountriesDetails = () => {
                 setIsLoading(false);
             });
     }, [id]);
-    if (isLoading) return <Loader />;
+
+    if (isLoading) return <Loader variant="global" />;
     if (error) {
         return (
             <Alert key={"danger"} variant={"danger"} className="mt-5">
@@ -64,8 +65,10 @@ const CountriesDetails = () => {
                                     <p>
                                         <b>Capital:</b>{" "}
                                         {country.capital
-                                            .map((c) => c)
-                                            .join(", ")}
+                                            ? country.capital
+                                                  .map((c) => c)
+                                                  .join(", ")
+                                            : "-"}
                                     </p>
                                     <p>
                                         <b>Region:</b> {country.region}
@@ -75,17 +78,23 @@ const CountriesDetails = () => {
                                     <p>
                                         <b>Currency:</b>{" "}
                                         <span style={{ padding: "0.5rem" }}>
-                                            {Object.values(country.currencies)
-                                                .map((curr) => curr.name)
-                                                .join(", ")}
+                                            {country.currencies
+                                                ? Object.values(
+                                                      country.currencies
+                                                  )
+                                                      .map((curr) => curr.name)
+                                                      .join(", ")
+                                                : "-"}
                                         </span>
                                     </p>
                                     <p>
                                         <b>Languages:</b>{" "}
                                         <span style={{ padding: "0.5rem" }}>
-                                            {Object.values(
-                                                country.languages
-                                            ).join(", ")}
+                                            {country.languages
+                                                ? Object.values(
+                                                      country.languages
+                                                  ).join(", ")
+                                                : "-"}
                                         </span>
                                     </p>
                                 </div>

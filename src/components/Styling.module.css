@@ -121,10 +121,8 @@ justify-content: flex-end;
 }
 .countryTitle{
   text-align: left;
-  color:#3C6E71;
-text-shadow:1px 1px rgb(99, 51, 50);
-letter-spacing: 0.25rem;
-text-transform: uppercase;
+  color: #3C6E71;
+  text-transform: uppercase;
 }
 
 .countryTxtWrapper{
@@ -208,5 +206,12 @@ box-shadow: 0px 10px 27px -11px rgba(0,0,0,0.75);
   .countryFirstCol,
   .countrySecCol{
     padding:0rem;
+  }
+  .spinner{
+    width: 100%;
+    justify-content: center;
+    display:flex;
+    margin: 3rem 0;
+
   }
 }
